@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loading Page - El Shifa Pharmacy</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    .loading-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .loading-wrapper.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .text-container {
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .text-container .loading {
+      font-size: 48px;
+      border-bottom: 3px solid white;
+      padding-bottom: 8px;
+      margin-bottom: 5px;
+      font-family: 'Arial Black', Gadget, sans-serif;
+    }
+
+    .text-container .elshifa {
+      font-size: 36px;
+      font-family: 'Courier New', Courier, monospace;
+      color: white;
+    }
+
+    .cross-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .cross-icon {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .cross-icon .vertical, 
+    .cross-icon .horizontal {
+      position: absolute;
+      background-color: white;
+      border-radius: 8px;
+      animation: glow 2s infinite ease-in-out alternate;
+    }
+
+    .cross-icon .vertical {
+      width: 18px;
+      height: 60px;
+      left: 21px;
+      top: 0;
+      animation-delay: 0s;
+    }
+
+    .cross-icon .horizontal {
+      width: 60px;
+      height: 18px;
+      top: 21px;
+      left: 0;
+      animation-delay: 1s;
+    }
+
+    .pharmacy-text {
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      font-family: 'Arial', sans-serif;
+      color: white;
+    }
+
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 5px #fff;
+        background-color: #fff;
+      }
+      100% {
+        box-shadow: 0 0 20px #fff;
+        background-color: #ccc;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .loading-wrapper {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .text-container .loading {
+        font-size: 36px;
+      }
+      .text-container .elshifa {
+        font-size: 28px;
+      }
+      .cross-icon {
+        width: 45px;
+        height: 45px;
+      }
+      .cross-icon .vertical {
+        width: 12px;
+        height: 45px;
+        left: 16px;
+      }
+      .cross-icon .horizontal {
+        width: 45px;
+        height: 12px;
+        top: 16px;
+      }
+      .pharmacy-text {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="loading-wrapper" id="loadingWrapper">
+    <div class="text-container">
+      <div class="loading">Loading</div>
+      <div class="elshifa">El Shifa</div>
+    </div>
+
+    <div class="cross-container">
+      <div class="cross-icon">
+        <div class="vertical"></div>
+        <div class="horizontal"></div>
+      </div>
+      <div class="pharmacy-text">Pharmacy</div>
+    </div>
+  </div>
+
+  <script>
+    // بعد 3 ثواني يختفي اللودنج وينتقل للصفحة التالية
+    setTimeout(() => {
+      const loading = document.getElementById('loadingWrapper');
+      loading.classList.add('hide');
+
+      // بعد انتهاء تأثير الاختفاء (0.5 ثانية) يوجه لصفحة جديدة
+      setTimeout(() => {
+        // غير الرابط هنا للصفحة اللي عايز تودّيها
+        window.location.href = 'index.html';
+      }, 500);
+    }, 3000);
+  </script>
+</body>
+</html>
